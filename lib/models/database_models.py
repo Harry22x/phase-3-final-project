@@ -14,21 +14,22 @@ metadata = MetaData(naming_convention=convention)
 Base = declarative_base(metadata=metadata)
 
 
-class Suplier:
+class Suplier(Base):
     __tablename__ = 'suppliers'
 
     id = Column(Integer(),primary_key=True)
     name = Column(String(20))
-    contact = Column(Integer(10))
+    contact = Column(String(10))
     location = Column(String())
     products = relationship('Product', backref= backref('supplier'))
+
+    __table_args__ = (Index('suplier_name_idx', 'name'),)
 
     def __repr__(self):
         return f'Supplier(id={self.id}, name ={self.name}, contact = {self.contact}, location ={self.location})'
         
-    Index('suplier_name', 'name')
-
-class Product:
+    
+class Product(Base):
     __tablename__ = 'products'
 
     id = Column(Integer(),primary_key=True)
@@ -38,12 +39,15 @@ class Product:
     supplier_id = Column(Integer(), ForeignKey('suppliers.id'))  
     orders = relationship('Order',backref= backref('product'))
 
-    def __repr__(self):
-        return f'Produt(id={self.id}, name={self.name},category={self.category},quantity remaining={self.quantity_remaining},supllier={self.supplier_id})'
-    
-    Index('produt_name', 'name')
+    __table_args__ = (Index('product_name_idx', 'name'),)
 
-class Order:
+    def __repr__(self):
+        return f'Product(id={self.id}, name={self.name}, category={self.category}, quantity remaining={self.quantity_remaining}, supplier id={self.supplier_id})'
+
+    
+    
+
+class Order(Base):
     __tablename__ = 'orders'
 
     id = Column(Integer(), primary_key=True)
@@ -52,4 +56,4 @@ class Order:
     order_quantity = Column(Integer())
 
     def __repr__(self):
-        return f'Order(id={self.id},product_id={self.product_id}, order date={self.order_date}, order quantity={self.order_quantity})'
+        return f'Order(id={self.id},product_id={self.product_id}, order_date={self.order_date}, order_quantity={self.order_quantity})'
