@@ -75,8 +75,8 @@ def main():
             print("Invalid choice")
 
 def menu():
-    print("Please select an option:")
-    print("\n 0. Exit the program")
+    print("\n\n\n Please select an option:")
+    print("0. Exit the program")
     
     
     print("\n--- Product Management ---")

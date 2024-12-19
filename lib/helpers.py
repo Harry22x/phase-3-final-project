@@ -36,7 +36,7 @@ def add_product():
     name = input("Enter product name: ")
     category = input("Enter product category: ")
     quantity_remaining = int(input("Enter product quantity remaining: "))
-    cost_per_item = int(input("Enter cost of item"))
+    cost_per_item = int(input("Enter cost of item: "))
     supplier_id = int(input("Enter supplier ID: "))
     try:
         product = Product(name=name, category=category, quantity_remaining=quantity_remaining,cost_per_item = cost_per_item, supplier_id=supplier_id)
