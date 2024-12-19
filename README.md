@@ -14,6 +14,9 @@ quantity remaining by however much the quantity the user ordered the item and wi
 * Enter the lib/ directory and run  alembic upgrade head to initialize the database
 * Run seed.py to seed the database
 * Run python cli.py
+* Enter the lib/ directory and run  alembic upgrade head to initialize the database
+* Run seed.py to seed the database
+* Run  python cli.py
 
 ## Technologies used
 
