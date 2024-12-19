@@ -1,5 +1,5 @@
 from sqlalchemy import (ForeignKey, Column, Integer, String, MetaData,DateTime,
-                        CheckConstraint, PrimaryKeyConstraint, UniqueConstraint,Index
+                        Index
 )
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
@@ -36,13 +36,14 @@ class Product(Base):
     name = Column(String(20))
     category = Column(String())
     quantity_remaining = Column (Integer())
+    cost_per_item = Column(Integer())
     supplier_id = Column(Integer(), ForeignKey('suppliers.id'))  
     orders = relationship('Order',backref= backref('product'))
 
     __table_args__ = (Index('product_name_idx', 'name'),)
 
     def __repr__(self):
-        return f'Product(id={self.id}, name={self.name}, category={self.category}, quantity remaining={self.quantity_remaining}, supplier id={self.supplier_id})'
+        return f'Product(id={self.id}, name={self.name}, category={self.category}, quantity remaining={self.quantity_remaining}, cost per item = {self.cost_per_item},supplier id={self.supplier_id})'
 
     
     
@@ -52,8 +53,11 @@ class Order(Base):
 
     id = Column(Integer(), primary_key=True)
     product_id = Column(Integer(),ForeignKey('products.id'))
+    product_name = Column(String())
     order_date = Column(DateTime(), default=datetime.now())
     order_quantity = Column(Integer())
+    total_cost = Column(Integer())
+  
 
     def __repr__(self):
-        return f'Order(id={self.id},product_id={self.product_id}, order_date={self.order_date}, order_quantity={self.order_quantity})'
+        return f'Order(id={self.id},product_id={self.product_id},product name = {self.product_name}, order_date={self.order_date}, order_quantity={self.order_quantity}, total cost = {self.total_cost})'

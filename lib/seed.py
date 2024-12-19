@@ -35,8 +35,8 @@ if __name__ == '__main__':
         'Clothing': ['Shirt', 'Pants', 'Jacket', 'Shoes', 'Hat']
     }
 
-    suplier_names=['ABC solutions','Wix fixes', 'Tryarch supplies','Leonard supplies','Iketo supplies',
-                   'Lanard supplies','Global supplies','env supplies']
+    suplier_names=['ABC solutions','Wix fixes', 'Tennex supplies','Leonard supplies','Iketo supplies',
+                   'Lanard supplies','Global supplies','Inv. supplies']
 
     
     supliers = []
@@ -55,12 +55,13 @@ if __name__ == '__main__':
     products = []
     
     for category in categories:
-            for i in range(random.randint(2, 5)): 
+            for i in range(5): 
                 product_name = category_products[category][i]
                 product = Product(
                     name=product_name,
                     category=category,
-                    quantity_remaining=random.randint(3, 20),
+                    quantity_remaining=random.randint(1, 40),
+                    cost_per_item = random.randint(20,100),
                     supplier_id=random.randint(1,8)
                 )
                 products.append(product)
