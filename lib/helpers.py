@@ -16,7 +16,7 @@ def get_all_products():
 
 def get_all_suppliers():
 
-    print("Getting all products from the database.")
+    print("Getting all Suppliers from the database.")
     supliers = session.query(Suplier).all()
     for suplier in supliers:
         print(suplier)
@@ -148,6 +148,7 @@ def delete_order():
         try:
             session.delete(order)
             session.commit()
+            print("Succesfully deleted order")
         except Exception as exc:
             print("Error deleting order", exc)
     else:
@@ -188,6 +189,7 @@ def update_product():
             product.quantity_remaining = new_quantity
             session.commit()
             print("Successfully updated product.")
+            print(product)
         except Exception as exc:
             print("Error updating product: ", exc)
     else:
@@ -208,6 +210,7 @@ def update_supplier():
             suplier.location = new_location
             session.commit()
             print("Successfully updated supplier")
+            print(suplier)
         except Exception as exc:
             print("Error updating supplier: ", exc)
     else:
